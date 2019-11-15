@@ -26,4 +26,4 @@ app.get('/api/wether/*',  (req,res) => {
     });
 })
 // 在端口3000监听:
-app.listen(8000);
+app.listen(3000);
