@@ -1,0 +1,32 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server/app.js",
+    "publish": "pm2 start server/app.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ytudt/weatherApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ytudt/weatherApp/issues"
+  },
+  "homepage": "https://github.com/ytudt/weatherApp#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.20.0",
+    "iconv-lite": "^0.5.0",
+    "koa": "^2.11.0",
+    "koa-better-http-proxy": "^0.2.4",
+    "koa-route": "^3.2.0",
+    "proxy": "^1.0.1",
+    "request": "^2.88.0",
+    "xml2js": "^0.4.22"
+  }
+}
