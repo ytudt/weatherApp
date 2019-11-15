@@ -50,11 +50,8 @@ export default {
       if (!this.cityName) return
       api.wether.getWetherByCity(this.cityName)
         .then((res) => {
-          // console.log(res.data.resp)
           this.wetherData = res.data.resp
-        }).catch((e) => {
-          // console.log(e)
-        })
+        }).catch((e) => {})
     },
     onCityClick (cityName) {
       this.cityName = cityName
@@ -64,12 +61,7 @@ export default {
       api.city.getCityList(this.cityName)
         .then((res) => {
           this.cityList = res.data
-          // console.log(res.data.resp)
-          // this.wetherData = res.data.resp
-          console.log(res)
-        }).catch((e) => {
-          // console.log(e)
-        })
+        }).catch(() => {})
     }
   }
 }
