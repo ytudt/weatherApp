@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run server | npm run client",
+    "client": "npm run publish",
     "server": "nodemon server/app.js",
     "publish": "pm2 start server/app.js --watch"
   },
