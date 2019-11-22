@@ -1,25 +1,22 @@
-
-const express=require('express')
 const parseString = require('xml2js').parseString;
 const axios = require('axios');
 const constant = require('../constant');
-const router=express.Router()
+const Router = require('koa-router')
 
-router.get('/WeatherApi',  (req,res) => {
-    const {url} = req;
-    return  axios.get(`${constant.URL.wether}${url.replace('/api/wether', '')}`)
-    .then((response) => {
-        const {status} = response;
-        try{
-        parseString(response.data, (err, reslut) => {
-            res.status(status).json(reslut);
+const router = new Router();
+
+router.get('/WeatherApi', async(ctx) => {
+    const {url} = ctx;
+    try{
+        const response = await axios.get(`${constant.URL.wether}${url.replace('/api/wether', '')}`);
+        const {status, data} = response;
+        parseString(data, (err, reslut) => {
+           ctx.body = reslut;
+           ctx.status = status;
         })
-        }catch(err){
-        res.status(500).send({ error: err });
-        }
-    }).catch((err) => {
-        res.status(500).send({ error: err });
-    });
+    }catch(e){
+        ctx.status = 500;
+    }
 })
 
 module.exports=router

@@ -1,16 +1,17 @@
 const fs = require('fs')
 const path = require('path')
-const express=require('express')
-const router=express.Router()
+const Router = require('koa-router')
 const cityList = fs.readFileSync(path.resolve(__dirname, '../json/city.json'), 'utf-8');
 
-router.get('/list', (req, res) =>{
+const router = new Router();
+
+router.get('/list', (ctx) =>{
     try{
-        res.status(200).json(JSON.parse(cityList).city);
+        ctx.body = JSON.parse(cityList).city;
+        ctx.status = 200;
     }catch(err){
-        res.status(500).send({ error: err });;
+        ctx.status = 500;
     }
- 
 })
 
 module.exports=router

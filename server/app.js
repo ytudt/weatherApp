@@ -1,11 +1,13 @@
-// 导入koa，和koa 1.x不同，在koa2中，我们导入的是一个class，因此用大写的Koa表示:
+
 const path = require('path');
-const express = require('express')
+const Koa = require('koa');
+const serve = require('koa-static');
 const router = require('./router');
 
-const app = express();
+const app = new Koa();
 
-app.use(express.static(path.resolve(__dirname, '../client/dist')));
-router(app);
+app.use(serve(path.resolve(__dirname, '../client/dist'))); 
+app.use(router.routes()).use(router.allowedMethods())
+
 // 在端口3000监听:
 app.listen(3000);

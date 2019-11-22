@@ -1,10 +1,10 @@
-const wetherRouter = require('./wether');
-const cityRouter = require('./city');
+const wether = require('./wether');
+const city = require('./city');
 
+const Router = require('koa-router');
+const router = new Router();
 
-function registerRouter (app){
-    app.use('/api/wether', wetherRouter);
-    app.use('/api/city', cityRouter);
-}
+router.use('/api/wether', wether.routes(), wether.allowedMethods());
+router.use('/api/city', city.routes(), city.allowedMethods());
 
-module.exports = registerRouter;
+module.exports = router;
